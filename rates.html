@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="color-scheme" content="light"/>
+<meta name="supported-color-schemes" content="light"/>
+<title>Rate Sheet — Stamp & Sign Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --terra:#a04830;--rust:#c0604a;--sand:#e8b898;
+  --cream:#fdf6f0;--ivory:#faf5ee;--dark:#2c1a10;
+  --mid:#7a5a50;--light:#ecddd4;--white:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--cream);font-family:'Jost',sans-serif;font-weight:300;color:var(--dark);line-height:1.7;}
+
+/* ── Header ── */
+.header{
+  background:var(--terra);padding:60px 40px 48px;
+  text-align:center;position:relative;overflow:hidden;
+}
+.header::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:280px;height:280px;border-radius:50%;
+  background:rgba(232,184,152,.1);
+}
+.header::after{
+  content:'';position:absolute;bottom:-60px;left:-60px;
+  width:200px;height:200px;border-radius:50%;
+  background:rgba(201,168,76,.08);
+}
+.seal{position:relative;z-index:1;margin-bottom:16px;}
+.header-eyebrow{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--sand);font-weight:500;margin-bottom:10px;
+  position:relative;z-index:1;
+}
+.header-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,5vw,52px);font-weight:700;
+  color:var(--white);line-height:1.1;
+  position:relative;z-index:1;margin-bottom:10px;
+}
+.header-title em{color:var(--sand);font-style:italic;}
+.header-sub{
+  font-size:13px;color:rgba(255,255,255,.65);
+  position:relative;z-index:1;max-width:480px;margin:0 auto;
+}
+
+/* ── Legal note ── */
+.legal-banner{
+  background:var(--ivory);border-top:3px solid var(--sand);
+  border-bottom:1px solid var(--light);
+  padding:14px 40px;text-align:center;
+  font-size:12px;color:var(--mid);
+}
+.legal-banner strong{color:var(--terra);}
+
+/* ── Main ── */
+.main{max-width:860px;margin:0 auto;padding:48px 24px 80px;}
+
+/* ── Section titles ── */
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:600;color:var(--terra);
+  margin-bottom:6px;margin-top:48px;
+}
+.section-desc{font-size:13.5px;color:var(--mid);margin-bottom:20px;}
+
+/* ── Rate cards ── */
+.rate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:32px;}
+.rate-card{
+  background:var(--white);border:1px solid var(--light);
+  border-radius:12px;padding:24px 22px;
+  transition:border-color .2s,box-shadow .2s;
+  position:relative;
+}
+.rate-card:hover{border-color:var(--sand);box-shadow:0 6px 24px rgba(160,72,48,.08);}
+.rate-card.featured{
+  border-color:var(--terra) !important;
+  background:#a04830 !important;
+  color:var(--white) !important;
+}
+.rate-card.featured .rate-name{color:#e8b898 !important;-webkit-text-fill-color:#e8b898 !important;}
+.rate-card.featured .rate-price{color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;}
+.rate-card.featured .rate-unit{color:rgba(255,255,255,.6) !important;-webkit-text-fill-color:rgba(255,255,255,.6) !important;}
+.rate-card.featured .rate-desc{color:rgba(255,255,255,.8) !important;-webkit-text-fill-color:rgba(255,255,255,.8) !important;}
+.rate-card.featured .rate-includes li{color:rgba(255,255,255,.85) !important;-webkit-text-fill-color:rgba(255,255,255,.85) !important;}
+.rate-card.featured .rate-includes li::before{color:#e8b898 !important;-webkit-text-fill-color:#e8b898 !important;}
+.rate-badge{
+.calculator{
+  background:#ffffff;border:1px solid var(--light);
+  border-radius:16px;padding:32px 28px;margin-bottom:32px;
+}
+.calc-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;color:var(--terra);
+  margin-bottom:6px;
+}
+.calc-desc{font-size:13px;color:var(--mid);margin-bottom:24px;}
+.calc-row{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+.calc-label{font-size:12px;font-weight:500;color:var(--dark);letter-spacing:.3px;}
+.calc-select,.calc-check-row{
+  background:var(--ivory);border:1px solid var(--light);
+  border-radius:8px;padding:10px 14px;
+  font-family:'Jost',sans-serif;font-size:13.5px;
+  color:var(--dark);appearance:none;width:100%;
+  cursor:pointer;
+}
+.calc-select:focus{outline:none;border-color:var(--sand);}
+.calc-checks{display:flex;flex-direction:column;gap:8px;}
+.calc-check-row{
+  display:flex;align-items:center;gap:10px;
+  cursor:pointer;padding:10px 14px;
+  transition:border-color .2s;
+}
+.calc-check-row:hover{border-color:var(--sand);}
+.calc-check-row input[type="checkbox"]{
+  accent-color:var(--terra);width:16px;height:16px;cursor:pointer;
+}
+.calc-check-label{font-size:13px;color:var(--dark);flex:1;}
+.calc-check-price{font-size:12px;color:var(--mid);}
+.calc-result{
+  background:var(--terra);border-radius:12px;
+  padding:22px 24px;margin-top:20px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+}
+.calc-result-label{
+  font-size:13px;color:rgba(255,255,255,.75);
+  font-weight:400;
+}
+.calc-result-total{
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;font-weight:700;color:#ffffff;
+  line-height:1;
+}
+.calc-result-note{
+  font-size:11px;color:rgba(255,255,255,.5);
+  margin-top:4px;
+}
+.calc-book-btn{
+  display:block;width:100%;text-align:center;
+  background:var(--sand);color:var(--dark);
+  padding:12px;border-radius:30px;
+  font-size:12px;font-weight:600;letter-spacing:1px;
+  text-transform:uppercase;text-decoration:none;
+  margin-top:14px;transition:all .2s;border:none;
+  cursor:pointer;font-family:'Jost',sans-serif;
+}
+.calc-book-btn:hover{background:var(--cream);}
+  position:absolute;top:-10px;right:16px;
+  background:var(--sand);color:var(--dark);
+  font-size:9px;letter-spacing:1.5px;text-transform:uppercase;
+  font-weight:600;padding:3px 10px;border-radius:10px;
+}
+.rate-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;color:var(--terra);
+  margin-bottom:4px;
+}
+.rate-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:38px;font-weight:700;color:var(--dark);
+  line-height:1;margin-bottom:2px;
+}
+.rate-card.featured .rate-price{color:var(--white);}
+.rate-unit{font-size:12px;color:var(--mid);margin-bottom:12px;}
+.rate-card.featured .rate-unit{color:rgba(255,255,255,.55);}
+.rate-desc{font-size:12.5px;color:var(--mid);margin-bottom:12px;line-height:1.6;}
+.divider-line{border:none;border-top:1px solid var(--light);margin:12px 0;}
+.rate-card.featured .divider-line{border-color:rgba(255,255,255,.2);}
+.rate-includes{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.rate-includes li{font-size:12px;color:var(--mid);display:flex;align-items:flex-start;gap:6px;}
+.rate-includes li::before{content:'✓';color:var(--terra);font-weight:600;flex-shrink:0;margin-top:1px;}
+
+/* ── Add-ons table ── */
+.addon-table{width:100%;border-collapse:collapse;margin-bottom:12px;}
+.addon-table th{
+  text-align:left;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--mid);
+  font-weight:500;padding:8px 12px;
+  border-bottom:2px solid var(--light);
+}
+.addon-table td{
+  padding:12px 12px;font-size:13.5px;
+  border-bottom:1px solid var(--light);vertical-align:top;
+}
+.addon-table td:last-child{text-align:right;font-weight:500;color:var(--terra);white-space:nowrap;}
+.addon-table tr:last-child td{border-bottom:none;}
+.addon-table tr:hover td{background:var(--ivory);}
+.addon-note{font-size:11px;color:var(--mid);font-style:italic;margin-top:2px;display:block;}
+
+/* ── Audiences ── */
+.audience-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:32px;}
+.audience-card{
+  background:var(--white);border:1px solid var(--light);
+  border-radius:10px;padding:18px 16px;
+}
+.audience-icon{font-size:22px;margin-bottom:8px;}
+.audience-name{font-size:13px;font-weight:600;color:var(--terra);margin-bottom:4px;}
+.audience-desc{font-size:12px;color:var(--mid);line-height:1.6;}
+
+/* ── FAQ ── */
+.faq-item{border-bottom:1px solid var(--light);padding:16px 0;}
+.faq-q{font-size:14px;font-weight:500;color:var(--dark);margin-bottom:6px;}
+.faq-a{font-size:13px;color:var(--mid);line-height:1.7;}
+
+/* ── CTA ── */
+.cta{
+  background:var(--terra);border-radius:16px;
+  padding:40px 32px;text-align:center;margin-top:48px;
+}
+.cta-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:700;color:var(--white);
+  margin-bottom:8px;
+}
+.cta-sub{font-size:13px;color:rgba(255,255,255,.7);margin-bottom:20px;}
+.cta-btn{
+  display:inline-block;background:var(--sand);color:var(--dark);
+  padding:12px 30px;border-radius:30px;text-decoration:none;
+  font-size:12px;font-weight:600;letter-spacing:1px;
+  text-transform:uppercase;transition:all .2s;
+}
+.cta-btn:hover{background:var(--cream);transform:translateY(-2px);}
+.cta-contact{font-size:12px;color:rgba(255,255,255,.5);margin-top:14px;}
+.cta-contact a{color:var(--sand);text-decoration:none;}
+
+/* ── Legal footer ── */
+.legal-footer{
+  text-align:center;padding:24px 24px 40px;
+  font-size:11px;color:var(--mid);line-height:1.7;
+  border-top:1px solid var(--light);margin-top:48px;
+}
+
+@media(max-width:600px){
+  .header{padding:40px 24px 32px;}
+  .main{padding:32px 16px 60px;}
+  .rate-grid,.audience-grid{grid-template-columns:1fr;}
+}
+
+/* ── Force light mode — override system dark mode ── */
+:root{color-scheme:light only;}
+html,body{
+  background:#fdf6f0 !important;
+  color:#2c1a10 !important;
+  -webkit-text-fill-color:#2c1a10;
+}
+.main{background:#fdf6f0 !important;color:#2c1a10 !important;}
+.section-title{color:#a04830 !important;-webkit-text-fill-color:#a04830;}
+.section-desc{color:#7a5a50 !important;-webkit-text-fill-color:#7a5a50;}
+.rate-card{background:#ffffff !important;color:#2c1a10 !important;}
+.rate-name{color:#a04830 !important;-webkit-text-fill-color:#a04830;}
+.rate-price{color:#2c1a10 !important;-webkit-text-fill-color:#2c1a10;}
+.rate-unit{color:#7a5a50 !important;-webkit-text-fill-color:#7a5a50;}
+.rate-desc{color:#7a5a50 !important;-webkit-text-fill-color:#7a5a50;}
+.rate-includes li{color:#7a5a50 !important;-webkit-text-fill-color:#7a5a50;}
+.rate-card.featured .rate-name{color:#e8b898 !important;-webkit-text-fill-color:#e8b898;}
+.rate-card.featured .rate-price{color:#ffffff !important;-webkit-text-fill-color:#ffffff;}
+.rate-card.featured .rate-unit{color:rgba(255,255,255,.6) !important;}
+.rate-card.featured .rate-desc{color:rgba(255,255,255,.75) !important;}
+.rate-card.featured .rate-includes li{color:rgba(255,255,255,.8) !important;}
+.addon-table td{color:#2c1a10 !important;-webkit-text-fill-color:#2c1a10;background:#ffffff !important;}
+.addon-table th{color:#7a5a50 !important;-webkit-text-fill-color:#7a5a50;}
+.addon-table td:last-child{color:#a04830 !important;-webkit-text-fill-color:#a04830;}
+.addon-note{color:#7a5a50 !important;-webkit-text-fill-color:#7a5a50;}
+.addon-table tr:hover td{background:#faf5ee !important;}
+.audience-card{background:#ffffff !important;color:#2c1a10 !important;}
+.audience-name{color:#a04830 !important;-webkit-text-fill-color:#a04830;}
+.audience-desc{color:#7a5a50 !important;-webkit-text-fill-color:#7a5a50;}
+.faq-item{border-bottom-color:#ecddd4 !important;}
+.faq-q{color:#2c1a10 !important;-webkit-text-fill-color:#2c1a10;}
+.faq-a{color:#7a5a50 !important;-webkit-text-fill-color:#7a5a50;}
+.legal-banner{background:#faf5ee !important;color:#7a5a50 !important;-webkit-text-fill-color:#7a5a50;}
+.legal-banner strong{color:#a04830 !important;-webkit-text-fill-color:#a04830;}
+.legal-footer{color:#7a5a50 !important;-webkit-text-fill-color:#7a5a50;background:#fdf6f0 !important;}
+.rate-badge{background:#e8b898 !important;color:#2c1a10 !important;-webkit-text-fill-color:#2c1a10;}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="header">
+  <div class="seal">
+    <svg width="60" height="60" viewBox="0 0 80 80" fill="none">
+      <line x1="40" y1="6"  x2="40" y2="0"  stroke="#e8b898" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="40" y1="74" x2="40" y2="80" stroke="#e8b898" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="6"  y1="40" x2="0"  y2="40" stroke="#e8b898" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="74" y1="40" x2="80" y2="40" stroke="#e8b898" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="14" y1="14" x2="9"  y2="9"  stroke="#e8b898" stroke-width="2" stroke-linecap="round"/>
+      <line x1="66" y1="14" x2="71" y2="9"  stroke="#e8b898" stroke-width="2" stroke-linecap="round"/>
+      <line x1="14" y1="66" x2="9"  y2="71" stroke="#e8b898" stroke-width="2" stroke-linecap="round"/>
+      <line x1="66" y1="66" x2="71" y2="71" stroke="#e8b898" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="40" cy="40" r="30" fill="rgba(232,184,152,.2)"/>
+      <circle cx="40" cy="40" r="24" fill="rgba(253,246,240,.15)"/>
+      <circle cx="40" cy="40" r="19" fill="rgba(232,184,152,.2)"/>
+      <rect x="37" y="28" width="6" height="4" rx="1.5" fill="#f8d0b0"/>
+      <rect x="37" y="32" width="6" height="16" rx="2" fill="#fde8d0"/>
+      <polygon points="37,48 43,48 40,56" fill="#fde8d0"/>
+      <circle cx="40" cy="40" r="27" fill="none" stroke="rgba(232,184,152,.4)" stroke-width="1" stroke-dasharray="3.5 3"/>
+    </svg>
+  </div>
+  <div class="header-eyebrow">Stamp & Sign Co. · Alexandra Reyes</div>
+  <h1 class="header-title">Service <em>Rates</em></h1>
+  <p class="header-sub">Transparent, flat-rate pricing for remote online notarization. No hidden fees. No surprises.</p>
+  <a href="index.html" style="display:inline-block;margin-top:18px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#e8b898;text-decoration:none;border-bottom:1px solid rgba(232,184,152,.4);padding-bottom:2px;position:relative;z-index:1;">← Back to Home</a>
+</div>
+
+<!-- ── LEGAL BANNER ── -->
+<div class="legal-banner">
+  <strong>Florida Law:</strong> Per F.S. §117.275, the maximum statutory notarial act fee is $25 per act. All fees listed below are compliant with Florida Statutes Chapter 117, Part II.
+</div>
+
+<div class="main">
+
+  <!-- ── CORE SERVICES ── -->
+  <div class="section-title">Core Services</div>
+  <p class="section-desc">Flat-rate pricing per session. Each session includes one notarial act. Additional signatures or seals billed per act.</p>
+
+  <div class="rate-grid">
+
+    <div class="rate-card">
+      <div class="rate-name">Single Document</div>
+      <div class="rate-price">$25</div>
+      <div class="rate-unit">per notarial act</div>
+      <div class="rate-desc">One document, one signer. Ideal for powers of attorney, affidavits, or individual real estate docs.</div>
+      <hr class="divider-line"/>
+      <ul class="rate-includes">
+        <li>Secure video session</li>
+        <li>Identity verification (KBA)</li>
+        <li>Digital notary seal & signature</li>
+        <li>Tamper-evident document delivery</li>
+        <li>Notary journal entry</li>
+      </ul>
+    </div>
+
+    <div class="rate-card featured">
+      <div class="rate-badge">Most Popular</div>
+      <div class="rate-name">Multi-Document Session</div>
+      <div class="rate-price">$75</div>
+      <div class="rate-unit">up to 4 notarial acts</div>
+      <div class="rate-desc">Best value for clients with multiple documents. Real estate transactions, estate planning packages, and more.</div>
+      <hr class="divider-line"/>
+      <ul class="rate-includes">
+        <li>Everything in Single Document</li>
+        <li>Up to 4 notarial acts</li>
+        <li>One secure video session</li>
+        <li>Priority scheduling available</li>
+        <li>Same-day available</li>
+      </ul>
+    </div>
+
+    <div class="rate-card">
+      <div class="rate-name">Professional Package</div>
+      <div class="rate-price">$120</div>
+      <div class="rate-unit">up to 8 notarial acts</div>
+      <div class="rate-desc">Designed for real estate agents and insurance professionals with high-volume or complex transactions.</div>
+      <hr class="divider-line"/>
+      <ul class="rate-includes">
+        <li>Everything in Multi-Document</li>
+        <li>Up to 8 notarial acts</li>
+        <li>Priority scheduling</li>
+        <li>Agent referral coordination</li>
+        <li>Dedicated session support</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ── ADD-ON FEES ── -->
+  <div class="section-title">Additional Fees</div>
+  <p class="section-desc">All additional fees are disclosed upfront before your session begins. No surprises.</p>
+
+  <table class="addon-table">
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Fee</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Extra notarial act (beyond package)
+          <span class="addon-note">Per additional signature or seal beyond your package limit</span>
+        </td>
+        <td>$25 / act</td>
+      </tr>
+      <tr>
+        <td>
+          After-hours session
+          <span class="addon-note">Evenings after 7 PM and Sundays</span>
+        </td>
+        <td>+$15</td>
+      </tr>
+      <tr>
+        <td>
+          Same-day / urgent booking
+          <span class="addon-note">Sessions requested less than 30 minutes in advance</span>
+        </td>
+        <td>+$20</td>
+      </tr>
+      <tr>
+        <td>
+          Additional signer
+          <span class="addon-note">Second person signing the same document in the same session</span>
+        </td>
+        <td>+$15 / signer</td>
+      </tr>
+      <tr>
+        <td>
+          Witness coordination
+          <span class="addon-note">When a witness is required and we coordinate one remotely</span>
+        </td>
+        <td>+$20</td>
+      </tr>
+      <tr>
+        <td>
+          Document preparation review
+          <span class="addon-note">Review of documents prior to session to ensure notarization-readiness</span>
+        </td>
+        <td>+$15</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ── WHO WE SERVE ── -->
+  <div class="section-title">Who We Serve</div>
+  <p class="section-desc">Serving individuals and professionals across all 50 states via Remote Online Notarization.</p>
+
+  <div class="audience-grid">
+    <div class="audience-card">
+      <div class="audience-icon">🏠</div>
+      <div class="audience-name">Real Estate Agents</div>
+      <div class="audience-desc">Deeds, affidavits, POAs, seller disclosures, title documents — fast turnaround for your clients.</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon">🛡️</div>
+      <div class="audience-name">Insurance Professionals</div>
+      <div class="audience-desc">Affidavits, beneficiary forms, POAs, and claims documents handled with care and accuracy.</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon">👤</div>
+      <div class="audience-name">Individuals & Families</div>
+      <div class="audience-desc">Wills, trusts, healthcare directives, and personal documents — notarized from home.</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon">⚖️</div>
+      <div class="audience-name">Legal & Business</div>
+      <div class="audience-desc">Sworn statements, contracts, and business documents handled with paralegal-level precision.</div>
+    </div>
+  </div>
+
+  <!-- ── PRICING FAQ ── -->
+  <div class="section-title">Pricing FAQ</div>
+  <p class="section-desc">Common questions about our rates and what's included.</p>
+
+  <div class="faq-item">
+    <div class="faq-q">What counts as a "notarial act"?</div>
+    <div class="faq-a">A notarial act is each individual signature, acknowledgment, jurat, or oath that requires the notary's seal and signature. For example, if you have one POA that requires two signatures notarized — that counts as two notarial acts.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Are there any platform or technology fees?</div>
+    <div class="faq-a">Under Florida law, technology and platform fees may be charged separately from the notarial act fee. Any applicable platform fee will be disclosed clearly before your session begins and is typically included in the session rate above.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How do I pay?</div>
+    <div class="faq-a">Payment is collected securely at the time of your session. We accept all major credit and debit cards.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What if I need to cancel or reschedule?</div>
+    <div class="faq-a">Cancellations or reschedules made more than 2 hours before your session are free of charge. Late cancellations (less than 2 hours) may be subject to a $15 rebooking fee.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Do you offer volume or referral pricing for agents?</div>
+    <div class="faq-a">Yes! Real estate and insurance agents who refer multiple clients can ask about our partner referral program. Contact us directly to discuss a custom arrangement.</div>
+  </div>
+
+  <!-- ── PRICE CALCULATOR ── -->
+  <div class="section-title">Price Calculator</div>
+  <p class="section-desc">Estimate your session cost instantly. Select your options below.</p>
+
+  <div class="calculator">
+    <div class="calc-title">Build Your Quote</div>
+    <div class="calc-desc">Your estimated total updates as you make selections.</div>
+
+    <!-- Base package -->
+    <div class="calc-row">
+      <div class="calc-label">1. Select your base package</div>
+      <select class="calc-select" id="basePackage" onchange="calcTotal()">
+        <option value="25">Single Document — $25 (1 notarial act)</option>
+        <option value="75" selected>Multi-Document — $75 (up to 4 acts)</option>
+        <option value="120">Professional Package — $120 (up to 8 acts)</option>
+      </select>
+    </div>
+
+    <!-- Extra acts -->
+    <div class="calc-row">
+      <div class="calc-label">2. Additional notarial acts needed? ($25 each)</div>
+      <select class="calc-select" id="extraActs" onchange="calcTotal()">
+        <option value="0">None</option>
+        <option value="1">1 extra act (+$25)</option>
+        <option value="2">2 extra acts (+$50)</option>
+        <option value="3">3 extra acts (+$75)</option>
+        <option value="4">4 extra acts (+$100)</option>
+      </select>
+    </div>
+
+    <!-- Add-ons -->
+    <div class="calc-row">
+      <div class="calc-label">3. Select any add-ons that apply</div>
+      <div class="calc-checks">
+        <label class="calc-check-row">
+          <input type="checkbox" value="15" onchange="calcTotal()"/>
+          <span class="calc-check-label">After-hours session (after 7 PM or Sunday)</span>
+          <span class="calc-check-price">+$15</span>
+        </label>
+        <label class="calc-check-row">
+          <input type="checkbox" value="20" onchange="calcTotal()"/>
+          <span class="calc-check-label">Same-day / urgent booking (less than 30 min notice)</span>
+          <span class="calc-check-price">+$20</span>
+        </label>
+        <label class="calc-check-row">
+          <input type="checkbox" value="15" onchange="calcTotal()"/>
+          <span class="calc-check-label">Additional signer (second person same session)</span>
+          <span class="calc-check-price">+$15</span>
+        </label>
+        <label class="calc-check-row">
+          <input type="checkbox" value="20" onchange="calcTotal()"/>
+          <span class="calc-check-label">Witness coordination (remote witness arranged)</span>
+          <span class="calc-check-price">+$20</span>
+        </label>
+        <label class="calc-check-row">
+          <input type="checkbox" value="15" onchange="calcTotal()"/>
+          <span class="calc-check-label">Document preparation review</span>
+          <span class="calc-check-price">+$15</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div class="calc-result">
+      <div>
+        <div class="calc-result-label">Estimated Total</div>
+        <div class="calc-result-total" id="calcTotal">$75</div>
+        <div class="calc-result-note">Final price confirmed at booking. All fees disclosed upfront.</div>
+      </div>
+    </div>
+    <a href="https://calendly.com/stampandsignco" target="_blank" class="calc-book-btn">Book This Session on Calendly →</a>
+  </div>
+
+  <!-- ── CTA ── -->
+  <div class="cta">
+    <div class="cta-title">Ready to Book?</div>
+    <div class="cta-sub">Same-day appointments often available. All you need is 15 minutes and a valid photo ID.</div>
+    <a href="https://calendly.com/stampandsignco" class="cta-btn" target="_blank">Schedule Your Session →</a>
+    <div class="cta-contact">
+      Questions? <a href="tel:7868758827">786-875-8827</a> &nbsp;·&nbsp;
+      <a href="mailto:Stampandsignco@gmail.com">Stampandsignco@gmail.com</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── LEGAL FOOTER ── -->
+<div class="legal-footer">
+  Stamp &amp; Sign Co. · Alexandra Reyes, Commissioned Notary Public · Commission # HH 442839 · Expires September 12, 2027<br/>
+  Fees are compliant with Florida Statutes §117.05 and §117.275. The maximum statutory fee per notarial act is $25 under F.S. §117.275.<br/>
+  Additional service fees are non-notarial and disclosed in advance per Florida Notary Public Association guidelines.<br/>
+  Remote Online Notarization authorized under Florida Statutes Chapter 117, Part II · Serving all 50 states.
+</div>
+
+<script>
+function calcTotal() {
+  // Base package
+  const base = parseInt(document.getElementById('basePackage').value) || 0;
+  // Extra acts
+  const extraActs = parseInt(document.getElementById('extraActs').value) || 0;
+  const extraCost = extraActs * 25;
+  // Checkboxes
+  let addonCost = 0;
+  document.querySelectorAll('.calc-checks input[type="checkbox"]').forEach(cb => {
+    if (cb.checked) addonCost += parseInt(cb.value) || 0;
+  });
+  const total = base + extraCost + addonCost;
+  document.getElementById('calcTotal').textContent = '$' + total;
+}
+// Init
+calcTotal();
+</script>
+</body>
+</html>
